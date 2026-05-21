@@ -10,17 +10,29 @@ class ProductRepository {
     private $collection;
 
     public function __construct() {
-        $client = new Client(MONGODB_URI);
-        
-        $typeMap = [
-            'root' => Product::class,
-            'document' => 'array',
-            'array' => 'array'
-        ];
-        
-        $this->collection = $client->selectCollection(DB_NAME, COLLECTION_NAME, [
-            'typeMap' => $typeMap
-        ]);
+        try {
+            $client = new Client(MONGODB_URI);
+
+            $typeMap = [
+                'root' => Product::class,
+                'document' => 'array',
+                'array' => 'array'
+            ];
+
+            $this->collection = $client->selectCollection(DB_NAME, COLLECTION_NAME, [
+                'typeMap' => $typeMap
+            ]);
+        } catch (\Throwable $e) {
+            $logDir = __DIR__ . '/../../logs';
+            if (!is_dir($logDir)) {
+                @mkdir($logDir, 0755, true);
+            }
+            $logFile = $logDir . '/mongo_error.log';
+            $message = '[' . date('c') . '] MongoDB connection error: ' . $e->getMessage() . "\n" . $e->getTraceAsString() . "\n\n";
+            @file_put_contents($logFile, $message, FILE_APPEND | LOCK_EX);
+
+            throw $e;
+        }
     }
 
     /**
