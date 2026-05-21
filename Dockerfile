@@ -2,8 +2,15 @@ FROM php:8.2-cli
 
 WORKDIR /app
 
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends $PHPIZE_DEPS git unzip libssl-dev pkg-config \
+RUN apt-get update -q \
+    && apt-get install -y --no-install-recommends \
+        $PHPIZE_DEPS \
+        git \
+        unzip \
+        libssl-dev \
+        pkg-config \
+        libzstd-dev \
+        libbrotli-dev \
     && pecl install mongodb \
     && docker-php-ext-enable mongodb \
     && apt-get clean \
