@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Andino Products - Add Product</title>
+    <link rel="stylesheet" href="app/public/styles/styles.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="nav-brand">🛒 Andino Products</div>
+        <ul class="nav-links">
+            <li><a href="index.php?page=view_products">View Products</a></li>
+            <li><a href="index.php?page=add_product" class="active">Add Product</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Add New Product</h1>
+
+        <div id="db-save-error" class="alert alert-error is-hidden">
+            <strong>Error saving product:</strong> <span id="db-save-error-text"></span>
+        </div>
+
+        <form id="product-form" class="surface-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="name">Product Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Ex. Cookie" required />
+                </div>
+                <div class="form-group">
+                    <label for="brand">Brand:</label>
+                    <input type="text" id="brand" name="brand" placeholder="Ex. Havanna" required />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="flavor">Flavor:</label>
+                    <input type="text" id="flavor" name="flavor" placeholder="Ex. Chocolate" />
+                </div>
+                <div class="form-group">
+                    <label for="category">Category:</label>
+                    <select id="category" name="category" required>
+                        <option value="" disabled selected>Select a category</option>
+                        <option value="Beverages">Beverages</option>
+                        <option value="Snacks">Snacks</option>
+                        <option value="Dairy">Dairy</option>
+                        <option value="Candies">Candies</option>
+                        <option value="Bakery">Bakery</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="price">Price ($):</label>
+                <input type="number" step="0.01" min="0" id="price" name="price" placeholder="0.00" required />
+                <span id="price-error" class="error-message is-hidden"></span>
+            </div>
+
+            <button type="submit" class="primary-button">Save Product</button>
+        </form>
+    </div>
+
+    <script src="app/public/js/app.js"></script>
+</body>
+
+</html>

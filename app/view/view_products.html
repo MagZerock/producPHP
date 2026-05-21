@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Andino Products - Product List</title>
+    <link rel="stylesheet" href="app/public/styles/styles.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="nav-brand">🛒 Andino Products</div>
+        <ul class="nav-links">
+            <li><a href="index.php?page=view_products" class="active">View Products</a></li>
+            <li><a href="index.php?page=add_product">Add Product</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Products List</h1>
+
+        <div id="db-error" class="alert alert-error is-hidden">
+            <strong>Database Error:</strong> <span id="db-error-text"></span>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID (Hex)</th>
+                    <th>Name</th>
+                    <th>Brand</th>
+                    <th>Flavor</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody id="products-tbody">
+                <tr>
+                    <td colspan="6" class="loading-message">Loading products...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="app/public/js/app.js"></script>
+</body>
+
+</html>

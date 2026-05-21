@@ -1,0 +1,10 @@
+{
+    "require": {
+        "mongodb/mongodb": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    }
+}
